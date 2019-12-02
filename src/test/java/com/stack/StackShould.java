@@ -4,14 +4,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.core.Is.is;
 
 import java.util.EmptyStackException;
 
 public class StackShould {
 
-    Object OBJECT1 = "Some Object";
-    Object OBJECT2 = "Another Object";
-    Stack stack;
+    private static final Object OBJECT1 = "Some Object";
+    private static final Object OBJECT2 = "Another Object";
+    private Stack stack;
 
     @Before
     public void Setup(){
@@ -28,16 +29,15 @@ public class StackShould {
         stack.push(OBJECT1);
         stack.push(OBJECT2);
 
-        assertEquals(OBJECT2, stack.pop());
+        assertThat(stack.pop(), is(OBJECT2));
     }
 
     @Test
     public void pop_objects_in_reverse_order_they_were_pushed() {
         stack.push(OBJECT1);
         stack.push(OBJECT2);
-        stack.pop();
 
-        assertEquals(OBJECT1, stack.pop());
+        assertThat(stack.pop(), is(OBJECT2));
+        assertThat(stack.pop(), is(OBJECT1));
     }
-
 }
