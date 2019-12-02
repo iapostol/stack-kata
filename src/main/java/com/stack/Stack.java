@@ -11,7 +11,6 @@ public class Stack {
     public Object pop() {
         if (objects.isEmpty())
             throw new EmptyStackException();
-
         return objects.remove(objects.size() - 1);
     }
 
